@@ -1,18 +1,54 @@
 import "./App.css";
+import "./theme.css";
 import { useState } from "react";
 
 function App() {
   const [person, setPerson] = useState("Ali Hassan");
   const [age, setage] = useState("28");
   const [count, setcount] = useState(0);
+  const [theme, settheme] = useState("");
 
   const changeName = () => {
     setage("33");
   };
 
   return (
-    <div className="App">
-      <h2>My name is {person}</h2>
+    <div className={`App ${theme}`}>
+      <div>
+        <button
+          onClick={() => {
+            settheme("");
+          }}
+          style={{ marginRight: "26px" }}
+        >
+          Light
+        </button>
+        <button
+          onClick={() => {
+            settheme("dark");
+          }}
+          style={{ marginRight: "26px" }}
+        >
+          Dark
+        </button>
+        <button
+          onClick={() => {
+            settheme("grey");
+          }}
+          style={{ marginRight: "26px" }}
+        >
+          Grey
+        </button>
+        <button
+          onClick={() => {
+            settheme("pink");
+          }}
+        >
+          Pink
+        </button>
+      </div>
+
+      <h2 style={{ marginTop: "66px" }}>My name is {person}</h2>
       <button
         onClick={() => {
           setPerson("ELRAYEK♣");
