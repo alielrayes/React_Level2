@@ -14,6 +14,40 @@ function App() {
 
   return (
     <div className={`App ${theme}`}>
+      <button
+        onClick={() => {
+          settheme(theme == "" ? "dark" : "");
+        }}
+        style={{ marginBottom: "44px" }}
+      >
+        Toggle Theme
+      </button>
+
+      <div
+        onChange={() => {
+          settheme(theme == "" ? "dark" : "");
+        }}
+        style={{ marginBottom: "44px" }}
+        className="btn-container"
+      >
+        <i className="fa fa-sun-o" aria-hidden="true" />
+        <label className="switch btn-color-mode-switch">
+          <input
+            type="checkbox"
+            name="color_mode"
+            id="color_mode"
+            defaultValue={1}
+          />
+          <label
+            htmlFor="color_mode"
+            data-on="Dark"
+            data-off="Light"
+            className="btn-color-mode-switch-inner"
+          />
+        </label>
+        <i className="fa fa-moon-o" aria-hidden="true" />
+      </div>
+
       <div>
         <button
           onClick={() => {
