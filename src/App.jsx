@@ -17,6 +17,12 @@ const reducer = (state, action) => {
     case "CHANGE_AGE":
       return { ...state, age: action.newValue };
 
+    case "INCREASE":
+      return { ...state, startCount: action.newValue };
+
+    case "CHANGE_THEME":
+      return { ...state, theme: action.newValue };
+
     default:
       return state;
   }
@@ -27,9 +33,28 @@ function App() {
 
   return (
     <div className={`App ${allData.theme}`}>
-      <button style={{ marginBottom: "44px" }}>Toggle Theme</button>
+      <button
+        onClick={() => {
+          dispatch({
+            type: "CHANGE_THEME",
+            newValue: allData.theme == "light" ? "dark" : "light",
+          });
+        }}
+        style={{ marginBottom: "44px" }}
+      >
+        Toggle Theme
+      </button>
 
-      <div style={{ marginBottom: "44px" }} className="btn-container">
+      <div
+        onChange={() => {
+          dispatch({
+            type: "CHANGE_THEME",
+            newValue: allData.theme == "light" ? "dark" : "light",
+          });
+        }}
+        style={{ marginBottom: "44px" }}
+        className="btn-container"
+      >
         <i className="fa fa-sun-o" aria-hidden="true" />
         <label className="switch btn-color-mode-switch">
           <input
@@ -49,10 +74,37 @@ function App() {
       </div>
 
       <div>
-        <button style={{ marginRight: "26px" }}>Light</button>
-        <button style={{ marginRight: "26px" }}>Dark</button>
-        <button style={{ marginRight: "26px" }}>Grey</button>
-        <button>Pink</button>
+        <button
+          onClick={() => {
+            dispatch({ type: "CHANGE_THEME", newValue: "light" });
+          }}
+          style={{ marginRight: "26px" }}
+        >
+          Light
+        </button>
+        <button
+          onClick={() => {
+            dispatch({ type: "CHANGE_THEME", newValue: "dark" });
+          }}
+          style={{ marginRight: "26px" }}
+        >
+          Dark
+        </button>
+        <button
+          onClick={() => {
+            dispatch({ type: "CHANGE_THEME", newValue: "grey" });
+          }}
+          style={{ marginRight: "26px" }}
+        >
+          Grey
+        </button>
+        <button
+          onClick={() => {
+            dispatch({ type: "CHANGE_THEME", newValue: "pink" });
+          }}
+        >
+          Pink
+        </button>
       </div>
 
       <h2 style={{ marginTop: "66px" }}>My name is {allData.name}</h2>
@@ -79,7 +131,13 @@ function App() {
       <br />
       <br />
       <br />
-      <button>count is {allData.startCount}</button>
+      <button
+        onClick={() => {
+          dispatch({ type: "INCREASE", newValue: allData.startCount + 1 });
+        }}
+      >
+        count is {allData.startCount}
+      </button>
     </div>
   );
 }
