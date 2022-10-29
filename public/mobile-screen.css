@@ -1,0 +1,105 @@
+
+
+/* ====================================
+    1. Font Awesom hamburger menu
+======================================= */
+.absolute {
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
+
+input {
+  display: none;
+}
+
+.fa-bars {
+  font-size: 30px;
+  transform: scaleX(1.4);
+}
+
+
+.fas{
+  position: absolute;
+  right: 10vw;
+}
+
+/* ====================================
+    2. show on click
+======================================= */
+
+.show-on-click {
+  display: none;
+  border-top: 2px solid black;
+}
+
+#burger:checked + .show-on-click {
+  display: block;
+}
+
+label{
+  font-size: 22px;
+  /* border: 2px solid red; */
+  display: block;
+  padding: 20px;
+}
+
+label:hover,
+.fa-bars:hover,
+.sub-div li a:hover,
+
+label:hover .fas
+
+{
+  color: cyan;
+  letter-spacing: 2px;
+}
+
+.sub-div li a{
+  
+  display: block;
+}
+
+.main-div{
+  border-bottom: 2px solid black;
+}
+
+/* ====================================
+    3. sub of div
+======================================= */
+
+.sub-div {
+  display: none;
+}
+
+#html:checked + .sub-div,
+#css:checked + .sub-div,
+#js:checked + .sub-div {
+  display: block;
+}
+
+
+.sub-div li{
+  font-size: 17px;
+  padding: 10px 0 10px 35px;
+}
+
+
+
+/* ====================================
+    3. sub sub of css
+======================================= */
+.sub-sub-div{
+  display: none;
+  margin-top: 17px;
+}
+
+#mini:checked + .sub-sub-div{
+  display: block;
+}
+
+
+.mini-projects{
+  padding: 0;
+  font-size: 17px;
+}
