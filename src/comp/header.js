@@ -1,17 +1,28 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Header.css";
-import  '../theme.css';
+import "../theme.css";
+// LEVEL2
+import { useContext } from "react";
+import ThemeContext from "../context/ThemeContext";
 
 const Header = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   return (
     <div className="myheader">
       <header className="hide-when-mobile ali">
         <h1>
           <Link to="/">c4a.dev</Link>
         </h1>
-        <button className="theme-btn" >dark</button>
-       
+        <button
+          onClick={() => {
+            toggleTheme(theme === "Light" ? "Dark" : "Light");
+          }}
+          className="theme-btn"
+        >
+          {theme}
+        </button>
+
         <ul className="flex">
           <li className="main-list">
             <NavLink className="main-link" to="/html">

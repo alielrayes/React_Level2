@@ -12,13 +12,30 @@
 }
 
 .theme-btn:hover {
-  box-shadow: 0 0 10px #9e4673,0 0 40px #9e4673,0 0 80px #9e4673;
-  background: #9e4673;
+  box-shadow: 0 0 10px #555,0 0 40px #555,0 0 80px #555;
+  background: #555;
   border: none;
   outline: 0;
 }
 .theme-btn:focus {
   padding: 4px 12px;
-  box-shadow: 0 0 10px #9e4673,0 0 40px #9e4673,0 0 80px #9e4673;
+  box-shadow: 0 0 10px #555,0 0 40px #555,0 0 80px #555;
   box-shadow: 0 0 0 5px #3d4a59,0 0 0 6px #fff;
+}
+
+/* ==============
+  Dark mode
+=================*/
+
+.Dark {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+
+.Dark main{
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.Dark .ali{
+  background-color: rgba(17, 17, 17, 0.885) !important
 }
