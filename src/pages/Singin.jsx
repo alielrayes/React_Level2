@@ -12,7 +12,10 @@ const Signin = () => {
       <Header />
 
       <main>
+      
         <form>
+   
+
           <input required placeholder=" E-mail : " type="email" />
           <input required placeholder=" Password : " type="password" />
           <button>Sign in</button>
