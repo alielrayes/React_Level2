@@ -5,12 +5,15 @@ import { Helmet } from "react-helmet-async";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../firebase/config';
 import { useState } from 'react';
-
+import { useNavigate } from "react-router-dom";
 
 
 const Signin = () => {
+  const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+  const [hasError, sethasError] = useState(false);
+  const [firebaseError, setfirebaseError] = useState("");
 
   return (
     <>
@@ -44,18 +47,29 @@ const Signin = () => {
                 // Signed in 
                 const user = userCredential.user;
                 console.log(user)
+                navigate("/");
                 // ...
               })
               .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+
                 console.log(errorMessage)
+                sethasError(true)
+                setfirebaseError(errorCode)
               });
           }}>Sign in</button>
           <p className="account">
             Don't hava an account <Link to="/signup"> Sign-up</Link>
           </p>
+       
+          {hasError && <h2>{firebaseError}</h2>}
+       
         </form>
+    
+    
+  
+    
       </main>
       <Footer />
     </>
