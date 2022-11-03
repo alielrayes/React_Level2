@@ -7,7 +7,7 @@ import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase/config';
-import {  signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 
 
 
@@ -18,7 +18,7 @@ const Header = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   return (
     <div className="myheader">
-    
+
       <header className="hide-when-mobile ali">
         <h1>
           <Link to="/">c4a.dev</Link>
@@ -49,24 +49,24 @@ const Header = () => {
 
 
 
-        {!user &&  <li className="main-list">
+          {!user && <li className="main-list">
             <NavLink className="main-link" to="/signin">
               Sign-in
             </NavLink>
-          
-          </li>  }
-        
+
+          </li>}
 
 
-          {!user &&  <li className="main-list">
+
+          {!user && <li className="main-list">
             <NavLink className="main-link" to="/signup">
               Sign-up
             </NavLink>
-          
-          </li>   }
-          
 
-          {user &&  <li onClick={() => {
+          </li>}
+
+
+          {user && <li onClick={() => {
             signOut(auth).then(() => {
               console.log("Sign-out successful.")
             }).catch((error) => {
@@ -76,11 +76,11 @@ const Header = () => {
             <NavLink className="main-link">
               Sign-out
             </NavLink>
-          
-          </li>   }
+
+          </li>}
 
 
-          <li className="main-list">
+          {user && <li className="main-list">
             <NavLink className="main-link" to="/html">
               HTML
             </NavLink>
@@ -95,9 +95,10 @@ const Header = () => {
                 <a href="">learn in 1h</a>
               </li>
             </ul>
-          </li>
-          
-          <li className="main-list">
+          </li>}
+
+
+          {user && <li className="main-list">
             <NavLink className="main-link" to="/javascript">
               JavaScript
             </NavLink>
@@ -106,9 +107,14 @@ const Header = () => {
                 <a href="">coming soon🔥</a>
               </li>
             </ul>
-          </li>
+          </li>}
+
+
         </ul>
       </header>
+
+
+
 
       <header className="show-when-mobile ali">
         <h1>c4a.dev</h1>
