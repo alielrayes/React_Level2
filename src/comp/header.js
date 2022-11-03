@@ -97,7 +97,7 @@ const Header = () => {
             </ul>
           </li>}
 
-
+  
           {user && <li className="main-list">
             <NavLink className="main-link" to="/javascript">
               JavaScript
