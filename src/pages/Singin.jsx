@@ -52,24 +52,54 @@ const Signin = () => {
               })
               .catch((error) => {
                 const errorCode = error.code;
-                const errorMessage = error.message;
 
-                console.log(errorMessage)
+
+
                 sethasError(true)
-                setfirebaseError(errorCode)
+
+
+                switch (errorCode) {
+
+                  case "auth/invalid-email":
+                    setfirebaseError("Wrong Email")
+                    break;
+
+
+                  case "auth/user-not-found":
+                    setfirebaseError("Wrong Email")
+                    break;
+
+
+                  case "auth/wrong-password":
+                    setfirebaseError("Wrong Password")
+                    break;
+
+
+                  case "auth/too-many-requests":
+                    setfirebaseError("Too many requests, please try aganin later")
+                    break;
+
+
+                  default:
+                    setfirebaseError("Please check your email & password")
+                    break;
+
+                }
+
+
               });
           }}>Sign in</button>
           <p className="account">
             Don't hava an account <Link to="/signup"> Sign-up</Link>
           </p>
-       
+
           {hasError && <h2>{firebaseError}</h2>}
-       
+
         </form>
-    
-    
-  
-    
+
+
+
+
       </main>
       <Footer />
     </>

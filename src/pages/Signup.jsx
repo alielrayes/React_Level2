@@ -14,7 +14,8 @@ const Signup = () => {
   const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-
+  const [hasError, sethasError] = useState(false);
+  const [firebaseError, setfirebaseError] = useState("");
   return (
     <>
       <Helmet>
@@ -34,9 +35,9 @@ const Signup = () => {
             setpassword(eo.target.value)
           }} required placeholder=" Password : " type="password" />
           <button onClick={(eo) => {
-            
+
             eo.preventDefault();
-            
+
             createUserWithEmailAndPassword(auth, email, password)
               .then((userCredential) => {
                 // Signed in 
@@ -46,14 +47,45 @@ const Signup = () => {
               })
               .catch((error) => {
                 const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorMessage)
-                // ..
+                sethasError(true)
+
+
+                switch (errorCode) {
+
+                  case "auth/invalid-email":
+                    setfirebaseError("Wrong Email")
+                    break;
+
+
+                  case "auth/user-not-found":
+                    setfirebaseError("Wrong Email")
+                    break;
+
+
+                  case "auth/wrong-password":
+                    setfirebaseError("Wrong Password")
+                    break;
+
+
+                  case "auth/too-many-requests":
+                    setfirebaseError("Too many requests, please try aganin later")
+                    break;
+
+
+                  default:
+                    setfirebaseError("Please check your email & password")
+                    break;
+
+                }
+
               });
           }}>Sign up</button>
           <p className="account">
             Already hava an account <Link to="/signin"> Sign-in</Link>
           </p>
+
+
+          {hasError && <h2>{firebaseError}</h2>}
         </form>
       </main>
       <Footer />
