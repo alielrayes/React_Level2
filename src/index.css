@@ -76,11 +76,17 @@ form button {
   font-weight: 100;
 }
 
-.account a{
-  text-decoration: underline;
+.account a, .pls a{
+  /* text-decoration: underline; */
+  border-bottom: 2px solid;
+
   font-weight: 600;
   color: #00c6c6;
   font-size: 18px;
+}
+
+.Light .pls{
+  color: #111;
 }
 
 .Light form p {
