@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/home";
 import HTML from "./pages/html";
-import Css from "./pages/css";
+ 
 import Javascript from "./pages/javascript";
 // LEVEL2
 import { useContext } from "react";
@@ -33,10 +33,7 @@ const router = createBrowserRouter([
     element: <HTML />,
   },
 
-  {
-    path: "/css",
-    element: <Css />,
-  },
+ 
   {
     path: "/javascript",
     element: <Javascript />,

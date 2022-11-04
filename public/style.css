@@ -23,10 +23,11 @@
 
 .flex {
   display: flex;
+  align-items: center;
 }
 
 .main-list {
-  padding: 20px;
+  padding: 10px 20px;
   font-size: 19px;
   position: relative;
 }
@@ -49,7 +50,7 @@
   display: none;
 
   position: absolute;
-  top: 69px;
+  top: 44px;
   left: -15px;
   border-top: 1px solid cyan;
 

@@ -73,9 +73,9 @@ const Header = () => {
               // An error happened.
             });
           }} className="main-list">
-            <NavLink className="main-link">
+            <button className="main-link signout">
               Sign-out
-            </NavLink>
+            </button>
 
           </li>}
 
