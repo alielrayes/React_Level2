@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/home";
-import HTML from "./pages/html";
+import Home from "./pages/Home";
+import About from "./pages/About";
  
 import Profile from "./pages/Profile";
 // LEVEL2
@@ -29,8 +29,8 @@ const router = createBrowserRouter([
 
 
   {
-    path: "/html",
-    element: <HTML />,
+    path: "/about",
+    element: <About />,
   },
 
  

@@ -28,7 +28,7 @@ const Home = () => {
             <Link style={{ fontSize: "30px" }} to="/signin">
               sign in
             </Link>{" "}
-            to continue... 🧡
+            to continue... <span>🧡</span>
           </p>
         </main>
       )}

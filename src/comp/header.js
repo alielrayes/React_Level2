@@ -81,20 +81,10 @@ const Header = () => {
 
 
           {user && <li className="main-list">
-            <NavLink className="main-link" to="/html">
-              HTML
+            <NavLink className="main-link" to="/about">
+              About
             </NavLink>
-            <ul className="sub-ul">
-              <li>
-                <a href="">Full Course</a>
-              </li>
-              <li>
-                <a href="">Crash Course</a>
-              </li>
-              <li>
-                <a href="">learn in 1h</a>
-              </li>
-            </ul>
+
           </li>}
 
   

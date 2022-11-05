@@ -44,6 +44,18 @@ h1 {
 }
 
 
+
+
+button:hover{
+  scale: 1.05;
+  transition: all 0.15s;
+ 
+}
+
+button:active{
+  scale: 0.9;
+}
+
 /* ==========================
 Level2 (Sign-in - Sign-up)
 =============================*/

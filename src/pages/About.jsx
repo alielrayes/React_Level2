@@ -9,7 +9,7 @@ import { auth } from '../firebase/config';
 
 
 
-const Html = () => {
+const About = () => {
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
   
@@ -23,14 +23,14 @@ const Html = () => {
   return (
     <>
       <Helmet>
-        <title>HTML Page</title>
-        <meta name="description" content="HTMLLLLLLLLLLLLLLLL" />
+        <title>About Page</title>
+         
       </Helmet>
       <Header />
-      <MainContent pageName="HTML Page" />
+      <MainContent pageName="About Page" />
       <Footer />
     </>
   );
 };
 
-export default Html;
+export default About;
