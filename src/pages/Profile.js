@@ -10,19 +10,42 @@ import Moment from "react-moment";
 
 const Profile = () => {
   const [user, loading, error] = useAuthState(auth);
+
   const navigate = useNavigate();
   useEffect(() => {
-    if (!user) {
+    if (!user && !loading) {
       navigate("/");
     }
   });
 
-  return (
-    <>
-      <Helmet>
-        <title>Profile</title>
+  if (loading) {
+    return (
+      <div>
+        <Header />
+        <main>
+          <h2>Loading.......................</h2>
+        </main>
 
-        <style type="text/css">{` 
+        <Footer />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div>
+        <p>Error: {error}</p>
+      </div>
+    );
+  }
+
+  if (user) {
+    return (
+      <>
+        <Helmet>
+          <title>Profile</title>
+
+          <style type="text/css">{` 
         main{
           flex-direction: column;
         }
@@ -38,25 +61,28 @@ const Profile = () => {
         }
         
         `}</style>
-      </Helmet>
-      <Header />
+        </Helmet>
+        <Header />
 
-      <main>
-        <h6>Email: {user.email}</h6>
-        <h6>UserName: {user.displayName}</h6>
+        <main>
+          <h6>Email: {user.email}</h6>
+          <h6>UserName: {user.displayName}</h6>
 
-        <h6>
-          Last Sign-in : <Moment fromNow date={user.metadata.lastSignInTime} />{" "}
-        </h6>
+          <h6>
+            Last Sign-in :{" "}
+            <Moment fromNow date={user.metadata.lastSignInTime} />{" "}
+          </h6>
 
-        <h6>
-          Account Created : <Moment fromNow date={user.metadata.creationTime} />
-        </h6>
-        <button className="delete">Delete account</button>
-      </main>
-      <Footer />
-    </>
-  );
+          <h6>
+            Account Created :{" "}
+            <Moment fromNow date={user.metadata.creationTime} />
+          </h6>
+          <button className="delete">Delete account</button>
+        </main>
+        <Footer />
+      </>
+    );
+  }
 };
 
 export default Profile;
