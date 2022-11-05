@@ -2,13 +2,11 @@ import Header from "../comp/header";
 import Footer from "../comp/Footer";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { useState } from 'react';
+import { useState } from "react";
 
-import { auth } from '../firebase/config';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/config";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-
-
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -16,6 +14,7 @@ const Signup = () => {
   const [password, setpassword] = useState("");
   const [hasError, sethasError] = useState(false);
   const [firebaseError, setfirebaseError] = useState("");
+  const [userName, setuserName] = useState("");
   return (
     <>
       <Helmet>
@@ -25,65 +24,93 @@ const Signup = () => {
 
       <main>
         <form>
-          <p style={{ fontSize: "23px", marginBottom: "22px" }}>Create a new account <span>🧡</span> </p>
-          <input onChange={(eo) => {
+          <p style={{ fontSize: "23px", marginBottom: "22px" }}>
+            Create a new account <span>🧡</span>{" "}
+          </p>
 
-            setemail(eo.target.value)
-          }} required placeholder=" E-mail : " type="email" />
-          <input onChange={(eo) => {
+          <input
+            onChange={(eo) => {
+              setuserName(eo.target.value);
+            }}
+            required
+            placeholder=" UserName : "
+            type="text"
+          />
 
-            setpassword(eo.target.value)
-          }} required placeholder=" Password : " type="password" />
-          <button onClick={(eo) => {
+          <input
+            onChange={(eo) => {
+              setemail(eo.target.value);
+            }}
+            required
+            placeholder=" E-mail : "
+            type="email"
+          />
 
-            eo.preventDefault();
+          <input
+            onChange={(eo) => {
+              setpassword(eo.target.value);
+            }}
+            required
+            placeholder=" Password : "
+            type="password"
+          />
 
-            createUserWithEmailAndPassword(auth, email, password)
-              .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                navigate("/")
-                // ...
-              })
-              .catch((error) => {
-                const errorCode = error.code;
-                sethasError(true)
+          <button
+            onClick={(eo) => {
+              eo.preventDefault();
 
+              createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                  // Signed in
+                  const user = userCredential.user;
+                  updateProfile(auth.currentUser, {
+                    displayName: userName,
+                  })
+                    .then(() => {
+                      navigate("/");
+                    })
+                    .catch((error) => {
+                      console.log(error.code);
+                      // ...
+                    });
 
-                switch (errorCode) {
+                  // ...
+                })
+                .catch((error) => {
+                  const errorCode = error.code;
+                  sethasError(true);
 
-                  case "auth/invalid-email":
-                    setfirebaseError("Wrong Email")
-                    break;
+                  switch (errorCode) {
+                    case "auth/invalid-email":
+                      setfirebaseError("Wrong Email");
+                      break;
 
+                    case "auth/user-not-found":
+                      setfirebaseError("Wrong Email");
+                      break;
 
-                  case "auth/user-not-found":
-                    setfirebaseError("Wrong Email")
-                    break;
+                    case "auth/wrong-password":
+                      setfirebaseError("Wrong Password");
+                      break;
 
+                    case "auth/too-many-requests":
+                      setfirebaseError(
+                        "Too many requests, please try aganin later"
+                      );
+                      break;
 
-                  case "auth/wrong-password":
-                    setfirebaseError("Wrong Password")
-                    break;
-
-
-                  case "auth/too-many-requests":
-                    setfirebaseError("Too many requests, please try aganin later")
-                    break;
-
-
-                  default:
-                    setfirebaseError("Please check your email & password")
-                    break;
-
-                }
-
-              });
-          }}>Sign up</button>
+                    default:
+                      setfirebaseError("Please check your email & password");
+                      break;
+                  }
+                });
+            }}
+          >
+            Sign up
+          </button>
           <p className="account">
             Already hava an account <Link to="/signin"> Sign-in</Link>
           </p>
-
 
           {hasError && <h2>{firebaseError}</h2>}
         </form>
