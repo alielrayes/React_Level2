@@ -14,6 +14,8 @@ const Signin = () => {
   const [password, setpassword] = useState("");
   const [hasError, sethasError] = useState(false);
   const [firebaseError, setfirebaseError] = useState("");
+  const [showForm, setshowForm] = useState("");
+  const [showSendEmail, setshowSendEmail] = useState(false);
 
   return (
     <>
@@ -23,14 +25,29 @@ const Signin = () => {
       <Header />
 
       <main>
-        <form className="forgot-password">
-          <div className="close">
+        <form className={`forgot-password ${showForm}`}>
+        
+        
+          <div onClick={() => {
+            setshowForm("")
+          }} className="close">
             <i className="fa-solid fa-xmark"></i>
           </div>
 
           <input required placeholder=" E-mail : " type="email" />
-          <button>Reset email</button>
-          <p className="check-email">Please check your email to reset your password.</p>
+          <button
+            onClick={(eo) => {
+              eo.preventDefault();
+              setshowSendEmail(true);
+            }}
+          >
+            Reset email
+          </button>
+          {showSendEmail && (
+            <p className="check-email">
+              Please check your email to reset your password.
+            </p>
+          )}
         </form>
 
         <form>
@@ -99,6 +116,10 @@ const Signin = () => {
           <p className="account">
             Don't hava an account <Link to="/signup"> Sign-up</Link>
           </p>
+
+          <p onClick={() => {
+              setshowForm("show-forgot-password")
+          }} className="forgot-pass">Forgot password ?</p>
 
           {hasError && <h2>{firebaseError}</h2>}
         </form>
