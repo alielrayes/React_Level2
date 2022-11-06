@@ -54,15 +54,7 @@ const Profile = () => {
     margin: auto;
         }
 
-        .delete{
-          margin-top: 25px;
-        background-color:  #dc3545;
-        padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 0.25rem;
-    border-color: #dc3545;
-        }
+
         
         `}</style>
         </Helmet>
