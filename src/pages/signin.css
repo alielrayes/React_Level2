@@ -1,0 +1,33 @@
+.forgot-password{
+  background-color: whitesmoke;
+  width: 400px;
+  height: 333px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+
+}
+
+.close .fa-xmark{
+  font-size: 29px;
+  color: #444;
+  position: absolute;
+  top: 17px;
+  right: 22px;
+}
+
+.close .fa-xmark:hover{
+  color: orange;
+  font-size: 30px;
+  transform: rotate(180deg);
+  transition: 0.3s;
+}
+
+.check-email{
+  color: #333;
+  font-size: 16px;
+  margin-top: 25px;
+  line-height: 25px;
+}
