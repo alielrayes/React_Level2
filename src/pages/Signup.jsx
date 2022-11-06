@@ -12,6 +12,7 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useEffect } from "react";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -25,7 +26,15 @@ const Signup = () => {
   // Loading    (done)
   // NOT sign-in  (done)
   // sign-in without Email verification   (done)
-  // (sign-in && verified email) => navigate(/)
+  // (sign-in && verified email) => navigate(/)    (done)
+
+  useEffect(() => {
+    if (user) {
+      if (user.emailVerified) {
+        navigate("/");
+      }
+    }
+  });
 
   if (loading) {
     return (
@@ -38,21 +47,21 @@ const Signup = () => {
     );
   }
 
-if (user) {
-  if (!user.emailVerified) {
-    return (
-      <div>
-        <Header />
+  if (user) {
+    if (!user.emailVerified) {
+      return (
+        <div>
+          <Header />
 
-        <main>
-          <p>We send you an email to verify your Account</p>
-          <button className="delete">Send again</button>
-        </main>
-        <Footer />
-      </div>
-    );
+          <main>
+            <p>We send you an email to verify your Account</p>
+            <button className="delete">Send again</button>
+          </main>
+          <Footer />
+        </div>
+      );
+    }
   }
-}
 
   if (!user) {
     return (

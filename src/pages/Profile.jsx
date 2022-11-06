@@ -16,6 +16,14 @@ const Profile = () => {
     if (!user && !loading) {
       navigate("/");
     }
+
+    if (user) {
+      if (!user.emailVerified) {
+        navigate("/");
+      }
+    }
+
+    
   });
 
   if (loading) {

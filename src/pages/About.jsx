@@ -15,22 +15,59 @@ const About = () => {
   
   
   useEffect(() => {
-    if (!user) {
+    if (!user && !loading) {
       navigate("/");
     }
-  }, [user]);
 
-  return (
-    <>
-      <Helmet>
-        <title>About Page</title>
-         
-      </Helmet>
-      <Header />
-      <MainContent pageName="About Page" />
-      <Footer />
-    </>
-  );
+if (user) {
+  if (!user.emailVerified) {
+    navigate("/");
+  }
+}
+
+
+
+  } );
+
+
+
+
+
+  if (loading) {
+    return (
+      <div>
+        <Header />
+
+        <main>Loading........</main>
+        <Footer />
+      </div>
+    );
+  }
+
+
+if (user) {
+
+
+
+  if (user.emailVerified) {
+    return (
+      <>
+        <Helmet>
+          <title>About Page</title>
+           
+        </Helmet>
+        <Header />
+        <MainContent pageName="About Page" />
+        <Footer />
+      </>
+    );
+  }
+  
+}
+
+
+
+
 };
 
 export default About;

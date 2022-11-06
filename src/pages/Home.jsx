@@ -5,6 +5,9 @@ import { Helmet } from "react-helmet-async";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
 import { Link } from "react-router-dom";
+import { sendEmailVerification } from "firebase/auth";
+
+
 
 const Home = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -50,7 +53,7 @@ const Home = () => {
   }
 
 
-  
+
 
   if (user) {
     if (user.emailVerified) {
@@ -92,7 +95,13 @@ const Home = () => {
             </p>
 
             <p>Please verify your email to continue ✋ </p>
-            <button className="delete">Send email</button>
+            <button onClick={() => {
+              sendEmailVerification(auth.currentUser)
+              .then(() => {
+                console.log("Email verification sent!")
+                // ...
+              });
+            }} className="delete">Send email</button>
           </main>
 
           <Footer />
