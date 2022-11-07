@@ -1,5 +1,6 @@
 import Header from "../comp/header";
 import Footer from "../comp/Footer";
+import Loading from "../comp/Loading";
 import MainContent from "../comp/MainContent";
 import { Helmet } from "react-helmet-async";
 import { useEffect } from 'react';
@@ -34,15 +35,9 @@ if (user) {
 
 
   if (loading) {
-    return (
-      <div>
-        <Header />
-
-        <main>Loading........</main>
-        <Footer />
-      </div>
-    );
+    return <Loading />;
   }
+
 
 
 if (user) {

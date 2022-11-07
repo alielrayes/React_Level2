@@ -1,6 +1,6 @@
 import Header from "../comp/header";
 import Footer from "../comp/Footer";
-import MainContent from "../comp/MainContent";
+import Loading from "../comp/Loading";
 import { Helmet } from "react-helmet-async";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -28,17 +28,9 @@ const Profile = () => {
   });
 
   if (loading) {
-    return (
-      <div>
-        <Header />
-        <main>
-          <h2>Loading.......................</h2>
-        </main>
-
-        <Footer />
-      </div>
-    );
+    return <Loading />;
   }
+
 
   if (error) {
     return (

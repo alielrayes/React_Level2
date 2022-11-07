@@ -5,8 +5,8 @@ const Footer = () => {
   return (
 <div className="myfooter">
       <footer className="ali   ">
-        Designed and developed by Courses4Arab.com
-        <span>🧡</span>
+        Designed and developed by Courses4Arab.com 
+         <span>  <i className="fa-solid fa-heart"></i> </span>
       </footer>
 </div>
   );

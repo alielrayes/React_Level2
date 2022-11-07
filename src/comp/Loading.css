@@ -1,0 +1,17 @@
+
+.loading{
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+
+  border-top: 5px solid  #dc3545;
+  border-right: 5px solid  #dc3545;
+
+  animation: mymove 1s infinite linear;
+}
+
+@keyframes mymove {
+  0% {transform: rotate(0deg);}
+
+  100% {transform: rotate(360deg);}
+}

@@ -1,31 +1,20 @@
 import Header from "../comp/header";
 import Footer from "../comp/Footer";
-import MainContent from "../comp/MainContent";
+import Loading from "../comp/Loading";
+
 import { Helmet } from "react-helmet-async";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
 import { Link } from "react-router-dom";
 import { sendEmailVerification } from "firebase/auth";
 
-
-
 const Home = () => {
   const [user, loading, error] = useAuthState(auth);
   console.log(user);
 
   if (loading) {
-    return (
-      <div>
-        <Header />
-
-        <main>Loading........</main>
-        <Footer />
-      </div>
-    );
+    return <Loading />;
   }
-
-
-
 
   if (!user) {
     return (
@@ -43,7 +32,7 @@ const Home = () => {
             <Link style={{ fontSize: "30px" }} to="/signin">
               sign in
             </Link>{" "}
-            to continue... <span>🧡</span>
+            to continue... <span><i className="fa-solid fa-heart"></i></span>
           </p>
         </main>
 
@@ -51,9 +40,6 @@ const Home = () => {
       </>
     );
   }
-
-
-
 
   if (user) {
     if (user.emailVerified) {
@@ -69,7 +55,7 @@ const Home = () => {
           <main>
             <p>
               {" "}
-              Welcome: {user.displayName} <span>🧡</span>
+              Welcome: {user.displayName} <span><i className="fa-solid fa-heart"></i></span>
             </p>
           </main>
 
@@ -91,17 +77,21 @@ const Home = () => {
           <main>
             <p>
               {" "}
-              Welcome: {user.displayName} <span>🧡</span>
+              Welcome: {user.displayName} <span><i className="fa-solid fa-heart"></i>      </span>
             </p>
 
             <p>Please verify your email to continue ✋ </p>
-            <button onClick={() => {
-              sendEmailVerification(auth.currentUser)
-              .then(() => {
-                console.log("Email verification sent!")
-                // ...
-              });
-            }} className="delete">Send email</button>
+            <button
+              onClick={() => {
+                sendEmailVerification(auth.currentUser).then(() => {
+                  console.log("Email verification sent!");
+                  // ...
+                });
+              }}
+              className="delete"
+            >
+              Send email
+            </button>
           </main>
 
           <Footer />
@@ -109,8 +99,6 @@ const Home = () => {
       );
     }
   }
-
- 
 };
 
 export default Home;
