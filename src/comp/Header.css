@@ -1,5 +1,4 @@
-
-.myheader .ali{
+.myheader .ali {
   background-color: teal;
 }
 
@@ -12,7 +11,7 @@
 }
 
 
-.signout{
+.signout {
   all: unset;
   padding: 8px 15px;
 }
@@ -20,31 +19,28 @@
 /* ==================
     3. header of mobile
 ===================== */
-.show-when-mobile {
-  display: none;
+
+
+
+
+.logo {
+  animation: logoani 25s infinite;
+}
+
+@keyframes logoani {
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    letter-spacing: 7px;
+    opacity: 1;
+  }
 }
 
 
-@media (max-width: 800px) {
-  .show-when-mobile {
-    /* display: block; */
-  }
-  
-  .hide-when-mobile {
-    /* display: none; */
-  }
+.logo:hover {
+  font-size: x-large;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

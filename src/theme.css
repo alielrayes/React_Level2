@@ -45,7 +45,7 @@
 /* ==============
 Icon (sun & moon)
 ==================*/
-.fa-solid {
+.fa-sun, .fa-moon {
   font-size: 20px;
 }
 
