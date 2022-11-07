@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
 import Moment from "react-moment";
-import {  deleteUser } from "firebase/auth";
+import { deleteUser } from "firebase/auth";
 
 const Profile = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -23,14 +23,23 @@ const Profile = () => {
         navigate("/");
       }
     }
-
-    
   });
+
+  const DeleteBTN = () => {
+    deleteUser(user)
+      .then(() => {
+        //
+        console.log("User deleted.");
+      })
+      .catch((error) => {
+        // An error ocurred
+        console.log(error.message);
+      });
+  };
 
   if (loading) {
     return <Loading />;
   }
-
 
   if (error) {
     return (
@@ -74,16 +83,14 @@ const Profile = () => {
             Account Created :{" "}
             <Moment fromNow date={user.metadata.creationTime} />
           </h6>
-          <button onClick={() => {
-
-            deleteUser(user).then(() => {
-              // 
-              console.log("User deleted.")
-            }).catch((error) => {
-              // An error ocurred
-              console.log(error.message)
-            });
-          }} className="delete">Delete account</button>
+          <button
+            onClick={() => {
+              DeleteBTN();
+            }}
+            className="delete"
+          >
+            Delete account
+          </button>
         </main>
         <Footer />
       </>
@@ -93,5 +100,4 @@ const Profile = () => {
 
 export default Profile;
 
-
-// Firebase: Error (auth/requires-recent-login)
+ 

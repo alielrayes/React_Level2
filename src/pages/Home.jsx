@@ -12,6 +12,14 @@ const Home = () => {
   const [user, loading, error] = useAuthState(auth);
   console.log(user);
 
+
+  const sendAgain = () => {
+    sendEmailVerification(auth.currentUser).then(() => {
+      console.log("Email verification sent!");
+      // ...
+    });
+  }
+
   if (loading) {
     return <Loading />;
   }
@@ -83,10 +91,7 @@ const Home = () => {
             <p>Please verify your email to continue ✋ </p>
             <button
               onClick={() => {
-                sendEmailVerification(auth.currentUser).then(() => {
-                  console.log("Email verification sent!");
-                  // ...
-                });
+                sendAgain()
               }}
               className="delete"
             >

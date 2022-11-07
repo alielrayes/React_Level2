@@ -14,3 +14,12 @@ main{
  
   text-align: center;
 }
+
+
+.Light main p, .Light main h6, .Light main time{
+  color: #555;
+}
+
+.Light main button{
+  border: 2px solid white;
+}

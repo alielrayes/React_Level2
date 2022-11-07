@@ -21,6 +21,53 @@ const Signin = () => {
   const [showForm, setshowForm] = useState("");
   const [showSendEmail, setshowSendEmail] = useState(false);
 
+
+const forgotPassword = () => {
+  setshowForm("show-forgot-password");
+}
+
+const signInBTN = (eo) => {
+  eo.preventDefault();
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      console.log(user);
+      navigate("/");
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+
+      sethasError(true);
+
+      switch (errorCode) {
+        case "auth/invalid-email":
+          setfirebaseError("Wrong Email");
+          break;
+
+        case "auth/user-not-found":
+          setfirebaseError("Wrong Email");
+          break;
+
+        case "auth/wrong-password":
+          setfirebaseError("Wrong Password");
+          break;
+
+        case "auth/too-many-requests":
+          setfirebaseError(
+            "Too many requests, please try aganin later"
+          );
+          break;
+
+        default:
+          setfirebaseError("Please check your email & password");
+          break;
+      }
+    });
+}
+
+
   return (
     <>
       <Helmet>
@@ -89,44 +136,7 @@ const Signin = () => {
 
           <button
             onClick={(eo) => {
-              eo.preventDefault();
-              signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                  // Signed in
-                  const user = userCredential.user;
-                  console.log(user);
-                  navigate("/");
-                  // ...
-                })
-                .catch((error) => {
-                  const errorCode = error.code;
-
-                  sethasError(true);
-
-                  switch (errorCode) {
-                    case "auth/invalid-email":
-                      setfirebaseError("Wrong Email");
-                      break;
-
-                    case "auth/user-not-found":
-                      setfirebaseError("Wrong Email");
-                      break;
-
-                    case "auth/wrong-password":
-                      setfirebaseError("Wrong Password");
-                      break;
-
-                    case "auth/too-many-requests":
-                      setfirebaseError(
-                        "Too many requests, please try aganin later"
-                      );
-                      break;
-
-                    default:
-                      setfirebaseError("Please check your email & password");
-                      break;
-                  }
-                });
+              signInBTN(eo)
             }}
           >
             Sign in
@@ -137,7 +147,7 @@ const Signin = () => {
 
           <p
             onClick={() => {
-              setshowForm("show-forgot-password");
+              forgotPassword()
             }}
             className="forgot-pass"
           >
