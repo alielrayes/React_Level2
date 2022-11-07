@@ -1,5 +1,6 @@
 import Header from "../comp/header";
 import Footer from "../comp/Footer";
+ 
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import {
@@ -99,9 +100,7 @@ const signInBTN = (eo) => {
                   setshowSendEmail(true);
                 })
                 .catch((error) => {
-                  const errorCode = error.code;
-                  const errorMessage = error.message;
-                  console.log(errorCode)
+                  
                   // ..
                 });
             }}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import "./Header.css";
 import "../theme.css";
 // LEVEL2
@@ -13,7 +13,7 @@ import { signOut } from "firebase/auth";
 
 
 const Header = () => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user ] = useAuthState(auth);
 
   const { theme, toggleTheme } = useContext(ThemeContext);
   return (

@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase/config';
-
+import Erroe404 from '../pages/erroe404';
 
 
 const About = () => {
@@ -18,6 +18,11 @@ const About = () => {
   useEffect(() => {
     if (!user && !loading) {
       navigate("/");
+    }
+
+
+    if (error) {
+      return <Erroe404 />;
     }
 
 if (user) {

@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Erroe404 from './pages/erroe404';
  
 import Profile from "./pages/Profile";
 // LEVEL2
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-    errorElement: <h1>SORROY.........</h1>,
+    errorElement: <Erroe404 />,
   },
   {
     path: "/signin",

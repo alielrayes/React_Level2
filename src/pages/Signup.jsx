@@ -4,7 +4,7 @@ import Loading from "../comp/Loading";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
-
+import Erroe404 from '../pages/erroe404';
 import { auth } from "../firebase/config";
 import {
   createUserWithEmailAndPassword,
@@ -90,6 +90,11 @@ const Signup = () => {
         }
       });
   };
+
+
+  if (error) {
+    return <Erroe404 />;
+  }
 
   if (loading) {
     return <Loading />;
